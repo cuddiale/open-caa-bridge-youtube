@@ -1,23 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Open CAA Bridge YouTube",
-  "version": "1.1",
-  "description": "Barra laterale CAA per supportare la comunicazione su YouTube",
-  "permissions": [
-    "storage"
-  ],
+  "version": "1.0",
+  "description": "Affianca i bottoni CAA alla pagina originale di YouTube",
+  "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": [
-        "https://*.youtube.com/*"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "css": [
-        "content.css"
-      ],
-      "run_at": "document_end"
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
     }
   ]
 }
