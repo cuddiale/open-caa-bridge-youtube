@@ -229,10 +229,18 @@ function uploadPhoto(id, event) {
 }
 
 // Iniezione automatica dell'estensione all'avvio della pagina
-const observer = new MutationObserver(() => {
+// Funzione per verificare e iniettare la barra in modo sicuro
+function initExtension() {
   if (document.body) {
-    observer.disconnect();
     injectSidebar();
+  } else {
+    // Se il body non è ancora pronto, riprova tra 100 millisecondi
+    setTimeout(initExtension, 100);
   }
-});
-observer.observe(document.documentElement, { childList: true });
+}
+
+// Avvia il controllo al caricamento della pagina
+initExtension();
+
+// Gestisce i cambi pagina interni di YouTube (essendo una Single Page Application)
+window.addEventListener('yt-navigate-finish', injectSidebar);
