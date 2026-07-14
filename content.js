@@ -3,7 +3,6 @@ let defaultButtons = [
   { id: 'si', text: 'SÌ', image: '🟢', color: '#22c55e', core: true },
   { id: 'no', text: 'NO', image: '🔴', color: '#ef4444', core: true },
   { id: 'bagno', text: 'BAGNO', image: '🚽', color: '#3b82f6', core: true },
-  { id: 'aiuto', text: 'AIUTO', image: '🆘', color: '#eab308', core: true },
   { id: 'mamma', text: 'MAMMA', image: '', color: '#c084fc', core: true },
   { id: 'papa', text: 'PAPÀ', image: '', color: '#818cf8', core: true }
 ];
@@ -228,19 +227,24 @@ function uploadPhoto(id, event) {
   }
 }
 
-// Iniezione automatica dell'estensione all'avvio della pagina
-// Funzione per verificare e iniettare la barra in modo sicuro
+// Gestione robusta dell'inizializzazione e dei cambi pagina di YouTube
 function initExtension() {
+  const oldSidebar = document.getElementById('caa-sidebar');
+  if (oldSidebar) {
+    oldSidebar.remove();
+  }
+
   if (document.body) {
     injectSidebar();
   } else {
-    // Se il body non è ancora pronto, riprova tra 100 millisecondi
     setTimeout(initExtension, 100);
   }
 }
 
-// Avvia il controllo al caricamento della pagina
+// Avvia al primo caricamento della pagina
 initExtension();
 
-// Gestisce i cambi pagina interni di YouTube (essendo una Single Page Application)
-window.addEventListener('yt-navigate-finish', injectSidebar);
+// Intercetta i cambi di navigazione interni di YouTube
+window.addEventListener('yt-navigate-finish', () => {
+  setTimeout(initExtension, 500);
+});
