@@ -1,19 +1,20 @@
-/* Restringiamo il corpo di YouTube per fare spazio alla barra */
+/* Restringiamo il corpo di YouTube per fare spazio alla barra a sinistra */
 body {
-  margin-right: 250px !important;
+  margin-left: 250px !important;
+  margin-right: 0 !important;
   width: calc(100% - 250px) !important;
   position: relative !important;
 }
 
-/* La nostra barra laterale dei bottoni CAA */
+/* La nostra barra laterale dei bottoni CAA (posizionata a sinistra) */
 #caa-sidebar {
   position: fixed !important;
   top: 0 !important;
-  right: 0 !important;
+  left: 0 !important;
   width: 250px !important;
   height: 100vh !important;
   background-color: #0f172a !important;
-  border-left: 4px solid #1e293b !important;
+  border-right: 4px solid #1e293b !important;
   z-index: 999999999999 !important;
   display: flex !important;
   flex-direction: column !important;
